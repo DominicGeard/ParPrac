@@ -194,12 +194,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              mean       var
-result.1 0.9685789 0.7448816
-result.2 0.8608357 0.6500269
-result.3 1.0999804 1.1337752
-result.4 1.0088330 1.1891113
-result.5 0.9405768 0.7853907
-result.6 0.8439495 0.5826940</code></pre>
+result.1 0.8399458 0.9473566
+result.2 0.9924877 0.9297785
+result.3 1.0347286 1.4862650
+result.4 0.9454926 0.6726885
+result.5 1.0777261 1.5575629
+result.6 1.0573498 1.1611972</code></pre>
 </div>
 </div>
 <p><strong>Question2</strong></p>
@@ -228,11 +228,11 @@ result.6 0.8439495 0.5826940</code></pre>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>serial_time <span class="ot">&lt;-</span> end_seq <span class="sc">-</span> start_seq</span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>parallel_time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 0.272161 secs</code></pre>
+<pre><code>Time difference of 0.277513 secs</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>serial_time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 0.2432301 secs</code></pre>
+<pre><code>Time difference of 0.1725409 secs</code></pre>
 </div>
 </div>
 <p><strong>Question 3</strong></p>
@@ -259,7 +259,7 @@ result.6 0.8439495 0.5826940</code></pre>
 <span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>coverage_prob <span class="ot">&lt;-</span> <span class="fu">mean</span>(results)</span>
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>coverage_prob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.937</code></pre>
+<pre><code>[1] 0.914</code></pre>
 </div>
 </div>
 <p><strong>Question 4</strong></p>
@@ -329,15 +329,15 @@ result.3 0.9594941</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ForEachTime</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of -0.007983923 secs</code></pre>
+<pre><code>Time difference of -0.006682873 secs</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ReplicateTime</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of -0.002341986 secs</code></pre>
+<pre><code>Time difference of -0.002444983 secs</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ParLApplyTime</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of -0.00355792 secs</code></pre>
+<pre><code>Time difference of -0.004254103 secs</code></pre>
 </div>
 </div>
 
