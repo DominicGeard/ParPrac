@@ -1,0 +1,154 @@
+---
+title: "ParPrac"
+format: html
+---
+
+**Question 1**
+
+```{r}
+library(parallel)
+library(foreach)
+library(doParallel)
+library(knitr)
+cl <- makeCluster(detectCores() - 1)  
+registerDoParallel(cl)
+
+```
+
+```{r}
+results <- foreach(i = 1:100, .combine = rbind) %dopar% {
+    x = rexp(100,rate=1)
+    c(mean=mean(x),var=var(x))
+}
+stopCluster(cl)
+head(results)
+```
+
+**Question2**
+
+```{r}
+library(MASS)
+cl <- makeCluster(detectCores() - 1)  
+registerDoParallel(cl)
+df = galaxies
+start_parallel <- Sys.time()
+B_med <- foreach(i=1:1000, .combine = rbind) %dopar% {
+  x = sample(df,50,replace=T)
+  c(median=median(x))
+}
+end_parallel <- Sys.time()
+stopCluster(cl)
+
+
+start_seq <- Sys.time()
+B_med <- foreach(i=1:1000, .combine = rbind) %do% {
+  x = sample(df,50,replace=T)
+  c(median=median(x))
+}
+end_seq <- Sys.time()
+
+parallel_time <- end_parallel - start_parallel
+serial_time <- end_seq - start_seq
+parallel_time
+serial_time
+
+
+
+```
+
+**Question 3**
+
+```{r}
+true_mean <-  1
+  
+cl <- makeCluster(detectCores() - 1) 
+registerDoParallel(cl)
+results <- foreach(i = 1:1000, .combine = c) %dopar% {
+  #Generate sample data
+  sample_data <- rexp(50,1)
+    
+  # Bootstrap resampling
+  boot_means <- replicate(1000, mean(sample(sample_data, 50, replace = TRUE)))
+    
+  # Compute Percentile Bootstrap CI
+  ci_lower <- quantile(boot_means, 0.05 / 2)
+  ci_upper <- quantile(boot_means, 1 - 0.05 / 2)
+    
+  # Check if the true mean falls within the CI
+  (true_mean >= ci_lower) & (true_mean <= ci_upper)
+}
+stopCluster(cl)
+coverage_prob <- mean(results)
+coverage_prob
+```
+
+**Question 4**
+
+```{r}
+library(iterators)
+set.seed(1234)
+result <-  irnorm(n=5, mean = 0, sd = 1)
+cl <- makeCluster(detectCores() - 1) 
+registerDoParallel(cl)
+q4 <- foreach(i=1:3,.combine=rbind) %do%{
+  x=max(nextElem(result))
+  c(x)
+}
+stopCluster(cl)
+print(q4)
+```
+
+**Question 5**
+
+```{r}
+set.seed(1234)
+result <-  irnorm(n=5, mean = 0, sd = 1)
+cl <- makeCluster(detectCores() - 1) 
+registerDoParallel(cl)
+startFE <- Sys.time()
+q5a <- foreach(i=1:3,.combine=rbind) %do%{
+  x=max(nextElem(result))
+  c(x)
+}
+stopCluster(cl)
+endFE <- Sys.time()
+ForEachTime = startFE-endFE
+
+```
+
+```{r}
+set.seed(1234)
+result <-  irnorm(n=5, mean = 0, sd = 1)
+startB <- Sys.time()
+q5b <- replicate(3,{
+  x=max(nextElem(result))
+})
+endB <- Sys.time()
+
+ReplicateTime = startB-endB
+```
+
+```{r}
+set.seed(1234)
+result <-  irnorm(n=5, mean = 0, sd = 1)
+a1=nextElem(result)
+a2=nextElem(result)
+a3=nextElem(result)
+L=list(a1,a2,a3)
+find_max <- function(x) {
+  return(max(x))
+}
+cl <- makeCluster(detectCores() - 1) 
+clusterExport(cl, "find_max")
+startC <- Sys.time()
+max_values <- parLapply(cl, L, find_max)
+endC <- Sys.time()
+stopCluster(cl)
+ParLApplyTime = startC-endC
+```
+
+```{r}
+ForEachTime
+ReplicateTime
+ParLApplyTime
+```

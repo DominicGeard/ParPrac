@@ -1,0 +1,24 @@
+project:
+  title: "Dom's 2nd Hand In"
+  type: website
+  render:
+  - ParPrac.qmd
+  output-dir: _site
+website:
+  title: Statistical Computing Hand-In 2
+  sidebar:
+    border: true
+    background: light
+    position: right
+  navbar:
+    search: true
+    background: light
+    left:
+      - href: ParPrac.qmd
+        text: Parallelisation Practical, Hand-in 2
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
