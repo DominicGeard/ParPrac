@@ -5,17 +5,18 @@ format: html
 
 **Question 1**
 
-```{r}
+```{r,echo=FALSE}
 library(parallel)
 library(foreach)
 library(doParallel)
 library(knitr)
-cl <- makeCluster(detectCores() - 1)  
-registerDoParallel(cl)
+
 
 ```
 
 ```{r}
+cl <- makeCluster(detectCores() - 1)  
+registerDoParallel(cl)
 results <- foreach(i = 1:100, .combine = rbind) %dopar% {
     x = rexp(100,rate=1)
     c(mean=mean(x),var=var(x))
